@@ -1,0 +1,16 @@
+{
+    "name": "lucas/buscador-cursos",
+    "description": "Projeto que busca os cursos do site da alura",
+    "type": "library",
+    "authors": [
+        {
+            "name": "LUCAS GABRIEL DA SILVA VAZ SEVERO",
+            "email": "lucasgabriel31032006@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.9",
+        "symfony/dom-crawler": "^7.1",
+        "symfony/css-selector": "^7.1"
+    }
+}
