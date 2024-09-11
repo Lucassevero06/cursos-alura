@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use function compact;
+use function dd;
 use function redirect;
+use function var_dump;
 use function view;
 
 class SeriesController extends Controller
@@ -16,11 +19,7 @@ class SeriesController extends Controller
      */
     public function index()
     {
-        $series = [
-          'Punisher',
-          'Lost',
-          'Grey\'s Anatomy'
-        ];
+        $series = DB::select("SELECT nome FROM series;");
 
         return view('series.index')->with('series', $series);
     }
@@ -43,7 +42,10 @@ class SeriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nomeSerie = $request->input('nome');
+
+        DB::insert('INSERT INTO series (nome) VALUES (?)', [$nomeSerie]);
+        return redirect('/series');
     }
 
     /**
