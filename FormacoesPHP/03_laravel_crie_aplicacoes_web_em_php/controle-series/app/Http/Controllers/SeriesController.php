@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SeriesFormRequest;
-use App\Models\Serie;
+use App\Models\Series;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function compact;
@@ -23,7 +23,7 @@ class SeriesController extends Controller
      */
     public function index(Request $request)
     {
-        $series = Serie::all();
+        $series = Series::all();
         $mensagemSucesso = session('mensagem.sucesso');
 
         return view('series.index')->with('series', $series)->with('mensagemSucesso', $mensagemSucesso);
@@ -48,7 +48,7 @@ class SeriesController extends Controller
     public function store(SeriesFormRequest $request)
     {
 
-        $serie = Serie::create($request->all());
+        $serie = Series::create($request->all());
         return to_route('series.index')
             ->with('mensagem.sucesso', "Série '{$serie->nome}' removida com sucesso");
     }
@@ -70,7 +70,7 @@ class SeriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Serie $series)
+    public function edit(Series $series)
     {
         return view('series.edit')
             ->with('serie', $series);
@@ -83,7 +83,7 @@ class SeriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SeriesFormRequest $request, Serie $series)
+    public function update(SeriesFormRequest $request, Series $series)
     {
         $series->fill($request->all());
         $series->save();
@@ -98,7 +98,7 @@ class SeriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Serie $series)
+    public function destroy(Series $series)
     {
         $series->delete();
         return to_route('series.index')
