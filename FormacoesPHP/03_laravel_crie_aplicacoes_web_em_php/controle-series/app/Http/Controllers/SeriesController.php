@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use function compact;
 use function dd;
 use function redirect;
+use function session;
+use function to_route;
 use function var_dump;
 use function view;
 
@@ -18,11 +20,12 @@ class SeriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $series = Serie::query()->orderBy('nome')->get();
+        $mensagemSucesso = session('mensagem.sucesso');
 
-        return view('series.index')->with('series', $series);
+        return view('series.index')->with('series', $series)->with('mensagemSucesso', $mensagemSucesso);
     }
 
     /**
@@ -43,9 +46,9 @@ class SeriesController extends Controller
      */
     public function store(Request $request)
     {
-        Serie::create($request->all());
-
-        return to_route('series.index'); //redirect()->route()
+        $serie = Serie::create($request->all());
+        return to_route('series.index')
+            ->with('mensagem.sucesso', "Série '{$serie->nome}' removida com sucesso");
     }
 
     /**
@@ -88,8 +91,10 @@ class SeriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Serie $series)
     {
-        //
+        $series->delete();
+        return to_route('series.index')
+            ->with('mensagem.sucesso', "Série '{$series->nome}' removida com sucesso");
     }
 }
