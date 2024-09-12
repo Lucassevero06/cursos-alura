@@ -5,24 +5,32 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>{{ $title }} - Controle de Séries</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ route('series.index') }}">Series</a>
+        <a class="navbar-brand" href="{{ route('series.index') }}">Home</a>
 
-        @auth()
-            <a class="btn btn-danger" href="{{ route('logout') }}">Sair</a>
+        @auth
+        <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <button class="btn btn-link">
+                Sair
+            </button>
+        </form>
         @endauth
 
-        @guest()
-            <a class="btn btn-primary" href="{{ route('login') }}">Entrar</a>
+        @guest
+        <a href="{{ route('login') }}">Entrar</a>
         @endguest
     </div>
 </nav>
 <div class="container">
+    <h1>{{ $title }}</h1>
+
     @isset($mensagemSucesso)
         <div class="alert alert-success">
             {{ $mensagemSucesso }}
@@ -38,6 +46,7 @@
             </ul>
         </div>
     @endif
+
     {{ $slot }}
 </div>
 </body>

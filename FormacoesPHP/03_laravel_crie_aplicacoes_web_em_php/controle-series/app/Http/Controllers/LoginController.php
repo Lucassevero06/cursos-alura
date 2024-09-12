@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use function dd;
-use function redirect;
-use function to_route;
-use function view;
 
 class LoginController
 {
@@ -19,7 +15,7 @@ class LoginController
     public function store(Request $request)
     {
         if (!Auth::attempt($request->only(['email', 'password']))) {
-            return redirect()->back()->withErrors(['Usuário ou senha inválidos']);
+            return redirect()->back()->withErrors('Usuário ou senha inválidos');
         }
 
         return to_route('series.index');

@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Season extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'number'
-    ];
+    protected $fillable = ['number'];
 
     public function series()
     {
@@ -22,7 +20,7 @@ class Season extends Model
         return $this->hasMany(Episode::class);
     }
 
-    public function numberOfWatchedEpisodes()
+    public function numberOfWatchedEpisodes(): int
     {
         return $this->episodes
             ->filter(fn ($episode) => $episode->watched)
