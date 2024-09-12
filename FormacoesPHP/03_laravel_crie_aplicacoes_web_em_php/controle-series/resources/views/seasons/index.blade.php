@@ -1,5 +1,5 @@
 <x-layout title="Séries">
-    <h1>Temporadas de '{{ $series->nome }}'</h1>
+    <h1>Temporadas de: {{ $series->nome }}</h1>
     <ul class="list-group">
         @foreach($seasons as $season)
             <li class="list-group-item d-flex justify-content-between align-items-center">
