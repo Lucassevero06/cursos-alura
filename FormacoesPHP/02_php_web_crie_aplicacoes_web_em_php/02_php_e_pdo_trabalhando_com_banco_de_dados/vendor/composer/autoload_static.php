@@ -21,6 +21,7 @@ class ComposerStaticInit1160f1d07211074ab4339601d62ccd1d
     );
 
     public static $classMap = array (
+        'Alura\\Pdo\\Domain\\Model\\Student' => __DIR__ . '/../..' . '/src/Domain/Model/Student.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 

@@ -13,4 +13,4 @@ $student = new \Alura\Pdo\Domain\Model\Student(
 
 $sqlInsert = "INSERT INTO students (name, birth_date) VALUES ('{$student->name()}', '{$student->birthDate()->format('Y-m-d')}');";
 
-$pdo->exec($sqlInsert);
+var_dump($pdo->exec($sqlInsert));
