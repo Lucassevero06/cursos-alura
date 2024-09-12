@@ -9,6 +9,12 @@
     <title>{{ $title }} - Controle de Séries</title>
 </head>
 <body class="container">
+    @isset($mensagemSucesso)
+        <div class="alert alert-success">
+            {{ $mensagemSucesso }}
+        </div>
+    @endisset
+
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
