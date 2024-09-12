@@ -7,13 +7,8 @@ use App\Models\Episode;
 use App\Models\Season;
 use App\Models\Series;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use function compact;
-use function dd;
-use function redirect;
 use function session;
 use function to_route;
-use function var_dump;
 use function view;
 
 class SeriesController extends Controller
@@ -64,7 +59,7 @@ class SeriesController extends Controller
         $episodes = [];
         foreach ($serie->seasons as $season) {
 
-            for ($j = 0; $j <= $request->episodesPerSeason ; $j++) {
+            for ($j = 0; $j < $request->episodesPerSeason ; $j++) {
                 $episodes[] = [
                     'season_id' => $season->id,
                     'number' => $j,
