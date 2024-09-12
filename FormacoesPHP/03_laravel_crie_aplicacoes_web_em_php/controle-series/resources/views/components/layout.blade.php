@@ -8,7 +8,15 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>{{ $title }} - Controle de Séries</title>
 </head>
-<body class="container">
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ route('series.index') }}">Series</a>
+
+        <a class="btn btn-danger" href="{{ route('logout') }}">Sair</a>
+    </div>
+</nav>
+<div class="container">
     @isset($mensagemSucesso)
         <div class="alert alert-success">
             {{ $mensagemSucesso }}
@@ -25,5 +33,6 @@
         </div>
     @endif
     {{ $slot }}
+</div>
 </body>
 </html>
