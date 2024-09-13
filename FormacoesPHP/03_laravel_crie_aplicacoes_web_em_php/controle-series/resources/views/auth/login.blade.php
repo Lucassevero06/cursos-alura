@@ -50,6 +50,7 @@
                 <x-button class="ml-3">
                     {{ __('Log in') }}
                 </x-button>
+                    <a class="btn btn-primary" href="{{ route('register') }}">Register</a>
             </div>
         </form>
     </x-auth-card>
