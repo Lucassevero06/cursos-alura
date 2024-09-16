@@ -28,6 +28,5 @@ class LogSeriesCreated implements ShouldQueue
     public function handle(SeriesCreated $event)
     {
         Log::info("Série {$event->seriesName} criada com sucesso");
-
     }
 }

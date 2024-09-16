@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
-use function now;
 
 class EmailUsersAboutSeriesCreated implements ShouldQueue
 {
@@ -39,9 +38,8 @@ class EmailUsersAboutSeriesCreated implements ShouldQueue
                 $event->seriesSeasonsQty,
                 $event->seriesEpisodesPerSeason,
             );
-
             $when = now()->addSeconds($index * 5);
-            Mail::to($user)->later($when, $email); // agenda o envio de um email, com um tempo escolhido
+            Mail::to($user)->later($when, $email);
         }
     }
 }
