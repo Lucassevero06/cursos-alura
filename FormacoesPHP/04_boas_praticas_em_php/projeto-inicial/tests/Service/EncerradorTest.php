@@ -9,35 +9,6 @@ use PHPUnit\Framework\TestCase;
 use function array_fill;
 use function array_filter;
 
-class LeilaoDaoMock extends LeilaoDao
-{
-    private $leiloes = [];
-
-    public function salva(Leilao $leilao): void
-    {
-        $this->leiloes[] = $leilao;
-    }
-
-    public function recuperarNaoFinalizados(): array
-    {
-        return array_filter($this->leiloes, function (Leilao $leilao) {
-            return  !$leilao->estaFinalizado();
-        });
-    }
-
-    public function recuperarFinalizados(): array
-    {
-        return array_filter($this->leiloes, function (Leilao $leilao) {
-            return  $leilao->estaFinalizado();
-        });
-    }
-
-    public function atualiza(Leilao $leilao): void
-    {
-        
-    }
-}
-
 class EncerradorTest extends TestCase
 {
     public function testLeiloesComMaisDeUmaSemanaDevemSerEncerrados()
@@ -51,22 +22,18 @@ class EncerradorTest extends TestCase
           'Variante 1972 0km',
           new \DateTimeImmutable('10 days ago')
         );
-        $leilaoDao = new LeilaoDaoMock();
-        $leilaoDao->salva($fiat147);
-        $leilaoDao->salva($variant);
+        $leilaoDao = $this->createMock(LeilaoDao::class);
+        $leilaoDao->method('recuperarNaoFinalizados')
+            ->willReturn([$fiat147, $variant]);
+        $leilaoDao->method('recuperarFinalizados')
+            ->willReturn([$fiat147, $variant]);
 
         $encerrador = new Encerrador($leilaoDao);
         $encerrador->encerra();
 
-        $leiloes = $leilaoDao->recuperarFinalizados();
+        $leiloes = [$fiat147, $variant];
         self::assertCount(2, $leiloes);
-        self::assertEquals(
-            'Fiat 147 0KM',
-            $leiloes[0]->recuperarDescricao()
-        );
-        self::assertEquals(
-            'Variante 1972 0km',
-            $leiloes[1]->recuperarDescricao()
-        );
+        self::assertTrue($leiloes[0]->estaFinalizado());
+        self::assertTrue($leiloes[1]->estaFinalizado());
     }
 }
