@@ -25,8 +25,12 @@ class EncerradorTest extends TestCase
         $leilaoDao = $this->createMock(LeilaoDao::class);
         $leilaoDao->method('recuperarNaoFinalizados')
             ->willReturn([$fiat147, $variant]);
-        $leilaoDao->method('recuperarFinalizados')
-            ->willReturn([$fiat147, $variant]);
+        $leilaoDao->expects($this->exactly(2))
+            ->method('atualiza')
+            ->withConsecutive(
+                [$fiat147],
+                [$variant]
+            );
 
         $encerrador = new Encerrador($leilaoDao);
         $encerrador->encerra();
