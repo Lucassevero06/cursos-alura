@@ -12,9 +12,10 @@ class LeilaoDaoTest extends TestCase
     public function testInsercaoEBuscaDevemFuncionar()
     {
         $leilao = new Leilao('Variante 0km');
-        $leilaoDao = new LeilaoDao(ConnectionCreator::getConnection());
-
+        $pdo = ConnectionCreator::getConnection();
+        $leilaoDao = new LeilaoDao($pdo);
         $leilaoDao->salva($leilao);
+
         $leiloes = $leilaoDao->recuperarNaoFinalizados();
 
         self::assertCount(1, $leiloes);
@@ -23,5 +24,7 @@ class LeilaoDaoTest extends TestCase
             'Variante 0km',
             $leiloes[0]->recuperarDescricao()
         );
+
+        $pdo->exec('DELETE FROM leiloes;');
     }
 }
