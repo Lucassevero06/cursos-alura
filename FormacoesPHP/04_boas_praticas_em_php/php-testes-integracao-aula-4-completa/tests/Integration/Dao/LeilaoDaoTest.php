@@ -2,11 +2,10 @@
 
 namespace Alura\Leilao\Tests\Integration\Dao;
 
+use Alura\Leilao\Dao\Leilao as LeilaoDao;
 use Alura\Leilao\Infra\ConnectionCreator;
 use Alura\Leilao\Model\Leilao;
-use Alura\Leilao\Dao\Leilao as LeilaoDao;
 use PHPUnit\Framework\TestCase;
-use function var_dump;
 
 class LeilaoDaoTest extends TestCase
 {
@@ -18,11 +17,10 @@ class LeilaoDaoTest extends TestCase
         self::$pdo = new \PDO('sqlite::memory:');
         self::$pdo->exec('create table leiloes (
             id INTEGER primary key,
-            descricao  TEXT,
+            descricao TEXT,
             finalizado BOOL,
             dataInicio TEXT
         );');
-
     }
 
     protected function setUp(): void
@@ -35,39 +33,44 @@ class LeilaoDaoTest extends TestCase
      */
     public function testBuscaLeiloesNaoFinalizados(array $leiloes)
     {
+        // arrange
         $leilaoDao = new LeilaoDao(self::$pdo);
         foreach ($leiloes as $leilao) {
             $leilaoDao->salva($leilao);
         }
 
+        // act
         $leiloes = $leilaoDao->recuperarNaoFinalizados();
 
+        // assert
         self::assertCount(1, $leiloes);
         self::assertContainsOnlyInstancesOf(Leilao::class, $leiloes);
         self::assertSame(
-            'Variante 0km',
+            'Variante 0Km',
             $leiloes[0]->recuperarDescricao()
         );
         self::assertFalse($leiloes[0]->estaFinalizado());
     }
-
 
     /**
      * @dataProvider leiloes
      */
     public function testBuscaLeiloesFinalizados(array $leiloes)
     {
+        // arrange
         $leilaoDao = new LeilaoDao(self::$pdo);
         foreach ($leiloes as $leilao) {
             $leilaoDao->salva($leilao);
         }
 
+        // act
         $leiloes = $leilaoDao->recuperarFinalizados();
 
+        // assert
         self::assertCount(1, $leiloes);
         self::assertContainsOnlyInstancesOf(Leilao::class, $leiloes);
         self::assertSame(
-            'Fiat 147 0km',
+            'Fiat 147 0Km',
             $leiloes[0]->recuperarDescricao()
         );
         self::assertTrue($leiloes[0]->estaFinalizado());
@@ -78,13 +81,19 @@ class LeilaoDaoTest extends TestCase
         $leilao = new Leilao('Brasília Amarela');
         $leilaoDao = new LeilaoDao(self::$pdo);
         $leilao = $leilaoDao->salva($leilao);
-        $leilao->finaliza();
 
+        $leiloes = $leilaoDao->recuperarNaoFinalizados();
+        self::assertCount(1, $leiloes);
+        self::assertSame('Brasília Amarela', $leiloes[0]->recuperarDescricao());
+        self::assertFalse($leiloes[0]->estaFinalizado());
+
+        $leilao->finaliza();
         $leilaoDao->atualiza($leilao);
 
         $leiloes = $leilaoDao->recuperarFinalizados();
         self::assertCount(1, $leiloes);
         self::assertSame('Brasília Amarela', $leiloes[0]->recuperarDescricao());
+        self::assertTrue($leiloes[0]->estaFinalizado());
     }
 
     protected function tearDown(): void
@@ -94,9 +103,10 @@ class LeilaoDaoTest extends TestCase
 
     public function leiloes()
     {
-        $naoFinalizado = new Leilao('Variante 0km');
-        $finalizado = new Leilao('Fiat 147 0km');
+        $naoFinalizado = new Leilao('Variante 0Km');
+        $finalizado = new Leilao('Fiat 147 0Km');
         $finalizado->finaliza();
+
         return [
             [
                 [$naoFinalizado, $finalizado]
