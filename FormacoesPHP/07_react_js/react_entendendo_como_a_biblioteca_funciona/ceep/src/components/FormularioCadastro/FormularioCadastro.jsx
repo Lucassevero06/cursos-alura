@@ -11,13 +11,11 @@ class FormularioCadastro extends Component {
     _handleMudancaDeTitulo(evento) {
         evento.stopPropagation();
         this.titulo = evento.target.value;
-        console.log('Titulo: ' ,this.titulo);
     }
 
     _handleMudancaDeTexto(evento) {
         evento.stopPropagation();
         this.texto = evento.target.value;
-        console.log('Texto: ' ,this.texto);
     }
 
     _criarNota(evento) {
