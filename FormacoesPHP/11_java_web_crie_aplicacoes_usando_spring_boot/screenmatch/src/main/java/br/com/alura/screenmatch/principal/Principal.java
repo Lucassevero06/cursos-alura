@@ -3,9 +3,12 @@ package br.com.alura.screenmatch.principal;
 import br.com.alura.screenmatch.model.DadosEpisidio;
 import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.model.DadosTemporada;
+import br.com.alura.screenmatch.model.Episodio;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -51,11 +54,70 @@ public class Principal {
                 .collect(Collectors.toList()); //mesma função do toList(), porém pode ser mutavel
                 //.toList(); // esse metodo retorna uma lista IMUTAVEL
 
-        System.out.println("\nTop 5 episodios");
-        dadosEpisidios.stream()
-                .filter(e -> !e.avaliacao().equalsIgnoreCase("N/A"))
-                .sorted(Comparator.comparing(DadosEpisidio::avaliacao).reversed())
-                .limit(5)
-                .forEach(System.out::println);
+//        System.out.println("\nTop 10 episodios");
+//        dadosEpisidios.stream()
+//                .filter(e -> !e.avaliacao().equalsIgnoreCase("N/A"))
+//                .peek(e -> System.out.println("Primeiro filtro (N/A) " + e))
+//                .sorted(Comparator.comparing(DadosEpisidio::avaliacao).reversed())
+//                .peek(e -> System.out.println("Ordenação " + e))
+//                .limit(10)
+//                .peek(e -> System.out.println("Top 10 " + e))
+//                .map(e -> e.titulo().toUpperCase())
+//                .peek(e -> System.out.println("Mapeamento " + e))
+//                .forEach(System.out::println);
+
+        List<Episodio> episodios = temporadas.stream()
+                .flatMap(t -> t.episodios().stream()
+                        .map(d -> new Episodio(t.numero(), d))
+                ).collect(Collectors.toList());
+
+        episodios.forEach(System.out::println);
+
+//        System.out.println("digite trecho do titulo do episodio");
+//        var trechoDoTitulo = leitura.nextLine();
+//        Optional<Episodio> episodioBuscado = episodios.stream()
+//                .filter(e -> e.getTitulo().toUpperCase().contains(trechoDoTitulo.toUpperCase()))
+//                .findFirst();
+//
+//        if (episodioBuscado.isPresent()) {
+//            System.out.println("Episodio encontrado!");
+//            System.out.println("Temporada: " + episodioBuscado.get());
+//        } else {
+//            System.out.println("Episodio não encontrado");
+//        }
+
+//
+//        System.out.println("A partir de que ano voce deseja ver os episodios?");
+//        var ano = leitura.nextInt();
+//        leitura.nextLine();
+//
+//        LocalDate dataBusca = LocalDate.of(ano, 1, 1);
+//
+//        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        episodios.stream()
+//                .filter(e -> e.getDataLancamento() != null && e.getDataLancamento().isAfter(dataBusca))
+//                .forEach(e -> System.out.println(
+//                        "Temporada: " + e.getTemporada() +
+//                                " Episodio: " + e.getTitulo() +
+//                                " Data Lançamento: " + e.getDataLancamento().format(formatador)
+//                ));
+
+        Map<Integer, Double> avaliacoesPorTemporada = episodios.stream()
+                .filter(e -> e.getAvaliacao() > 0.0)
+                .collect(Collectors.groupingBy(Episodio::getTemporada,
+                        Collectors.averagingDouble(Episodio::getAvaliacao)));
+
+        System.out.println(avaliacoesPorTemporada);
+
+        //estatisticas
+        DoubleSummaryStatistics est = episodios.stream()
+                .filter(e -> e.getAvaliacao() > 0.0)
+                .collect(Collectors.summarizingDouble(Episodio::getAvaliacao));
+
+        System.out.println("Media: " + est.getAverage());
+        System.out.println("Melhor episodio: " + est.getMax());
+        System.out.println("Pior episodio" + est.getMin());
+        System.out.println("Quantidade: " + est.getCount());
+
     }
 }
