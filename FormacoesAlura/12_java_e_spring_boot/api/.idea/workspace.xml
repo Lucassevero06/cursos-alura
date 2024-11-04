@@ -1,88 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
-  <component name="ChangeListManager">
-    <list default="true" id="5e570fc7-c531-4d80-8b8b-dd1360ba1232" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../api /.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /.idea/api .iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/ApiApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/controller/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/controller/MedicoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/controller/PacienteController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/endereco/DadosEndereco.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/endereco/Endereco.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/medico/DadosAtualizacaoMedico.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/medico/DadosCadastroMedico.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/medico/DadosListagemMedico.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/medico/Especialidade.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/medico/Medico.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/medico/MedicoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/paciente/DadosAtualizacaoPaciente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/paciente/DadosCadastroPaciente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/paciente/DadosListagemPaciente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/paciente/Paciente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/java/med/voll/api/paciente/PacienteRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/resources/db/migration/V1__create-table-medicos.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/resources/db/migration/V2__alter-table-medicos-add-column-telefone.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/resources/db/migration/V3__create-table-pacientes.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/resources/db/migration/V4__alter-table-medicos-add-column-ativo.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/main/resources/db/migration/V5__alter-table-pacientes-add-column-ativo.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api /api/src/test/java/med/voll/api/ApiApplicationTests.java" beforeDir="false" />
-    </list>
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
-  <component name="ProjectId" id="2oDNWBP4VcvkG7YG00tmGwap8mB" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.ApiApplication.executor": "Run",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="ApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -92,28 +14,5 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
-      </set>
-    </attachedChunks>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="5e570fc7-c531-4d80-8b8b-dd1360ba1232" name="Changes" comment="" />
-      <created>1730400217826</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1730400217826</updated>
-      <workItem from="1730400220720" duration="103000" />
-    </task>
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
 </project>
