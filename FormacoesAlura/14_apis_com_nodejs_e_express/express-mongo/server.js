@@ -1,4 +1,5 @@
 import app from './src/app.js';
+import 'dot'
 
 const PORT = 3000;
 
