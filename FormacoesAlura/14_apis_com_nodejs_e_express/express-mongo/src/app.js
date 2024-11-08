@@ -1,4 +1,15 @@
 import express from 'express';
+import conectaNaDatabase from './config/dbConnect.js';
+
+const conexao = await conectaNaDatabase();
+
+conexao.on('error', (erro) => {
+    console.log("Erro ao conectar ao banco de dados: " + erro);
+})
+
+conexao.once('open', () => {
+    console.log("Conectado ao banco de dados com sucesso!");
+})
 
 const app = express(); //framework Express
 app.use(express.json()); //middleware para transformar o corpo da requisição em JSON pois o req.body vem em formato de string
