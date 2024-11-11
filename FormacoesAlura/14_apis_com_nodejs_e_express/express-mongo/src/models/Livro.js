@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
+import { autorSchema } from "./Autor.js";
 
-//model livro
 const livroSchema = new mongoose.Schema({
     id: { type: mongoose.Schema.Types.ObjectId }, //id uniques
     titulo: { type: String, required: true },
-    editora: { type: String, required: true },
-    preco: { type: Number, required: true },
-    paginas: { type: Number, required: true },
+    editora: { type: String },
+    preco: { type: Number },
+    paginas: { type: Number },
+    autor: autorSchema
 }, { versionKey: false });
 
 const livro = mongoose.model("livros", livroSchema);
