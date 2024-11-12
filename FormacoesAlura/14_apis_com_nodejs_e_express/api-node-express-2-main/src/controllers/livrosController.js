@@ -1,15 +1,16 @@
 import NaoEncontrado from "../erros/naoEncontrado.js";
-import { livros } from "../models/index.js";
+import { autores, livros } from "../models/index.js";
 
 class LivroController {
 
   static listarLivros = async (req, res, next) => {
     try {
-      const livrosResultado = await livros.find()
-        .populate("autor")
-        .exec();
+      const buscaLivros = livros.find();
 
-      res.status(200).json(livrosResultado);
+      req.resultado = buscaLivros;
+
+      next();
+
     } catch (erro) {
       next(erro);
     }
@@ -79,11 +80,19 @@ class LivroController {
 
   static listarLivroPorFiltro = async (req, res, next) => {
     try {
-      const busca = processaBusca(req.query);
+      const busca = await processaBusca(req.query);
 
-      const livrosResultado = await livros.find(busca);
+      if (busca !== null) {
+        const livrosResultado = livros
+        .find(busca)
+        .populate("autor");
 
-      res.status(200).send(livrosResultado);
+        req.resultado = livrosResultado;
+  
+        next();
+      } else {
+        res.status(200).send([]);
+      }
     } catch (erro) {
       next(erro);
     }
@@ -91,10 +100,10 @@ class LivroController {
 
 }
 
-function processaBusca(parametros) {
-  const { editora, titulo, minPaginas, maxPaginas } = parametros;
+async function processaBusca(parametros) {
+  const { editora, titulo, minPaginas, maxPaginas, nomeAutor } = parametros;
 
-  const busca = {};
+  let busca = {};
 
   if (editora) busca.editora = editora;
   if (titulo) busca.titulo = { $regex: titulo, $options: 'i' };
@@ -105,6 +114,17 @@ function processaBusca(parametros) {
   if (minPaginas) busca.numeroPaginas.$gte = minPaginas;
   //lte = Less Than or Equal = Menor ou igual que
   if (maxPaginas) busca.numeroPaginas.$lte = maxPaginas;
+
+  if (nomeAutor) {
+    const autor = await autores.findOne({ nome : nomeAutor });
+
+    if (autor !== null) {
+      busca.autor = autor._id;
+    } else {
+      busca = null;
+    }
+
+  }
 
   return busca;
 }
