@@ -35,7 +35,6 @@ class AutorController {
   static cadastrarAutor = async (req, res, next) => {
     try {
       let autor = new autores(req.body);
-
       const autorResultado = await autor.save();
 
       res.status(201).send(autorResultado.toJSON());
