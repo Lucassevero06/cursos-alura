@@ -2,6 +2,9 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/FormacoesAlura/01_aprenda_a_programar_em_php_com_orientacao_a_objetos/04_php_use_interfaces_namespaces_traits_e_excecoes/screen-match/src" isTestSource="false" packagePrefix="ScreenMatch" />
+      <sourceFolder url="file://$MODULE_DIR$/FormacoesAlura/03_laravel_crie_aplicacoes_web_em_php/controle-series" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/FormacoesAlura/04_boas_praticas_em_php" isTestSource="false" packagePrefix="Alura" />
       <sourceFolder url="file://$MODULE_DIR$/FormacoesPHP/01_aprenda_a_programar_em_php_com_orientacao_a_objetos/04_php_use_interfaces_namespaces_traits_e_excecoes/screen-match/src" isTestSource="false" packagePrefix="ScreenMatch" />
       <excludeFolder url="file://$MODULE_DIR$/FormacoesPHP/02_php_web_crie_aplicacoes_web_em_php/01_php_composer_dependencias_autoload_e_publicacao/buscador-cursos-alura/vendor" />
     </content>
